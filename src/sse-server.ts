@@ -4,6 +4,9 @@ import { URL } from "node:url";
 import { SSEServerTransport } from "@modelcontextprotocol/sdk/server/sse.js";
 import { createPlanfixServer } from "./server.js";
 import { log } from "./helpers.js";
+import { initConfig } from "./config.js";
+
+await initConfig();
 
 log("Starting Planfix MCP Server (SSE mode)");
 

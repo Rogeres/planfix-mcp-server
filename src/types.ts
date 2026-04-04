@@ -103,3 +103,82 @@ export interface TaskResponse {
   customFieldData?: CustomFieldDataType[];
   status?: { id: number };
 }
+
+// Full task details from GET /task/{id}
+export interface TaskFullResponse {
+  id: number;
+  title?: string;
+  name?: string;
+  description?: string;
+  status?: { id: number; name: string };
+  priority?: string;
+  importance?: string;
+  dateTime?: string;
+  startDateTime?: string;
+  endDateTime?: string;
+  counterparty?: { id: number; name?: string };
+  template?: { id: number; name?: string };
+  project?: { id: number; name?: string };
+  parent?: { id: number; name?: string };
+  assignees?: {
+    users?: Array<{ id: string; name?: string }>;
+    groups?: Array<{ id: number; name?: string }>;
+  };
+  members?: {
+    users?: Array<{ id: string; name?: string }>;
+  };
+  customFieldData?: CustomFieldDataType[];
+  files?: FileAttachment[];
+  isOverdued?: boolean;
+  isCloseToDeadline?: boolean;
+  isNotAcceptedInTime?: boolean;
+}
+
+export interface FileAttachment {
+  id: number;
+  name: string;
+  size?: number;
+  mimeType?: string;
+  version?: number;
+}
+
+export interface CommentResponse {
+  id: number;
+  dateTime?: string;
+  owner?: { id: number; name?: string; type?: string };
+  body?: string;
+  description?: string;
+  type?: string;
+  files?: FileAttachment[];
+  recipients?: Array<{ id: number; name?: string }>;
+}
+
+export interface ContactFullResponse {
+  id: number;
+  name?: string;
+  midname?: string;
+  lastname?: string;
+  email?: string;
+  phones?: Array<{ number: string; type: number }>;
+  telegram?: string;
+  instagram?: string;
+  description?: string;
+  companies?: Array<{ id: number; name?: string }>;
+  group?: { id: number; name?: string };
+  customFieldData?: CustomFieldDataType[];
+}
+
+export interface TaskListItem {
+  id: number;
+  name?: string;
+  title?: string;
+  status?: { id: number; name: string; isActive?: boolean };
+  template?: { id: number; name?: string };
+  counterparty?: { id: number; name?: string };
+  startDateTime?: string;
+  endDateTime?: string;
+  isOverdued?: boolean;
+  assignees?: {
+    users?: Array<{ id: string; name?: string }>;
+  };
+}

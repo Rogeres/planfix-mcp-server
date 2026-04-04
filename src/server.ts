@@ -28,6 +28,12 @@ import planfix_search_project from "./tools/planfix_search_project.js";
 import planfix_search_task from "./tools/planfix_search_task.js";
 import planfix_update_contact from "./tools/planfix_update_contact.js";
 import planfix_update_lead_task from "./tools/planfix_update_lead_task.js";
+import planfix_search from "./tools/planfix_search.js";
+import planfix_get_task from "./tools/planfix_get_task.js";
+import planfix_get_task_comments from "./tools/planfix_get_task_comments.js";
+import planfix_get_contact from "./tools/planfix_get_contact.js";
+import planfix_get_contact_tasks from "./tools/planfix_get_contact_tasks.js";
+import planfix_download_file from "./tools/planfix_download_file.js";
 
 export const TOOLS: ToolWithHandler[] = [
   planfix_add_to_lead_task,
@@ -37,11 +43,17 @@ export const TOOLS: ToolWithHandler[] = [
   planfix_create_sell_task,
   planfix_create_sell_task_ids,
   planfix_create_task,
+  planfix_download_file,
   planfix_get_child_tasks,
+  planfix_get_contact,
+  planfix_get_contact_tasks,
   planfix_get_report_fields,
+  planfix_get_task,
+  planfix_get_task_comments,
   planfix_reports_list,
   planfix_request,
   planfix_run_report,
+  planfix_search,
   planfix_search_company,
   planfix_search_contact,
   planfix_search_directory,

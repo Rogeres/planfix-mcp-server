@@ -2,12 +2,15 @@
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { createPlanfixServer } from "./server.js";
 import { log } from "./helpers.js";
-
-log("Starting Planfix MCP Server (stdio mode)");
-
-const server = createPlanfixServer();
+import { initConfig } from "./config.js";
 
 async function main(): Promise<void> {
+  // Load credentials from keychain/env before starting
+  await initConfig();
+
+  log("Starting Planfix MCP Server (stdio mode)");
+
+  const server = createPlanfixServer();
   const transport = new StdioServerTransport();
   await server.connect(transport);
   process.on("SIGINT", async () => {

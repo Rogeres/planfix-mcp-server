@@ -46,6 +46,15 @@ export function debugLog(message: string) {
   }
 }
 
+// MCP clients validate tool schemas with a JSON Schema 2020-12 validator and
+// reject the draft-07 dialect that zod-to-json-schema declares, so strip the
+// `$schema` marker (the schemas themselves are dialect-compatible).
+function toToolSchema(schema: z.ZodType): ToolInput {
+  const jsonSchema = zodToJsonSchema(schema) as Record<string, unknown>;
+  delete jsonSchema.$schema;
+  return jsonSchema as ToolInput;
+}
+
 export function getToolWithHandler<
   Input extends z.ZodType,
   Output extends z.ZodType,
@@ -65,9 +74,9 @@ export function getToolWithHandler<
   return {
     name,
     description,
-    inputSchema: zodToJsonSchema(inputSchema) as ToolInput,
+    inputSchema: toToolSchema(inputSchema),
     // `outputSchema` should be JSON schema object similar to inputSchema
-    outputSchema: zodToJsonSchema(outputSchema) as ToolInput,
+    outputSchema: toToolSchema(outputSchema),
     handler,
   };
 }
